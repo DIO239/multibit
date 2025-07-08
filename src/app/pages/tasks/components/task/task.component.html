@@ -1,0 +1,31 @@
+<div class="outer">
+  @if (task) {
+    <div class="workspace">
+      <div class="title_container">
+        <div class="back">
+          <button mat-mini-fab (click)="back()">
+            <mat-icon>arrow_back_ios</mat-icon>
+          </button>
+        </div>
+        <div class="title">
+          <span class="title">{{task.title}}</span>
+          <button mat-mini-fab color="primary" (click)="openDialog(task)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" (click)="deleteTask(task.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="tasks_container">
+        <div class="task">
+          <mat-card>
+            <mat-card-content>{{task.description}}</mat-card-content>
+            <mat-card-content>{{task.status | currentStatusName}}</mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>

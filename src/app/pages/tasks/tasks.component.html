@@ -1,0 +1,52 @@
+<div class="outer">
+  <div class="workspace">
+    <div class="title_container">
+      <span class="title">Список задач</span>
+      <button mat-mini-fab color="primary" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="filter_container">
+      <mat-form-field>
+        <mat-label>Фильтр по статусу</mat-label>
+        <mat-select [(value)]="selectedStatus">
+          <mat-option>Все статусы</mat-option>
+          @for (status of statusOptions; track status) {
+            <mat-option [value]="status">
+              {{status | currentStatusName}}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="search_field">
+        <mat-label>Поиск по названию</mat-label>
+        <input matInput type="text" [(ngModel)]="searchQuery">
+        @if (searchQuery) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="searchQuery = '';">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="tasksFilter()">Применить</button>
+      <button mat-raised-button color="accent" (click)="clearFilter()">Сбросить фильтр</button>
+    </div>
+    <div class="tasks_container">
+      @for (task of tasks; track task.id) {
+        <div class="task">
+          <mat-card>
+            <mat-card-content>{{task.id}} {{task.title}}</mat-card-content>
+            <mat-card-content>{{task.description}}</mat-card-content>
+            <mat-card-content>{{task.status | currentStatusName}}</mat-card-content>
+            <mat-card-actions>
+              <div class="button_card_container">
+                <button mat-raised-button (click)="goTask(task.id)">Подробнее</button>
+                <button mat-raised-button (click)="openDialog(task)" color="primary">Редактировать</button>
+                <button mat-raised-button color="warn" (click)="deleteTask(task.id)">Удалить</button>
+              </div>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      }
+    </div>
+  </div>
+</div>

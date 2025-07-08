@@ -1,0 +1,11 @@
+@import "../../tasks.component";
+
+.title_container {
+  width: 100%;
+  justify-content: space-between;
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
