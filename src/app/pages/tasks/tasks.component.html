@@ -10,7 +10,7 @@
       <mat-form-field>
         <mat-label>Фильтр по статусу</mat-label>
         <mat-select [(value)]="selectedStatus">
-          <mat-option>Все статусы</mat-option>
+          <mat-option>-</mat-option>
           @for (status of statusOptions; track status) {
             <mat-option [value]="status">
               {{status | currentStatusName}}
